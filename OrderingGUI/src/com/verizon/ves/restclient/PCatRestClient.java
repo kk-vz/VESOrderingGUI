@@ -14,7 +14,7 @@ public class PCatRestClient {
     private static final String pCatURL = "http://192.168.1.64:4782/PCatServiceCatalog/api/VES";
     
      
-    public String callPCatURL(String input) {
+  /*  public String callPCatURL(String input) {
     	 String output="";
     	 String op = null;
         try {
@@ -50,6 +50,13 @@ public class PCatRestClient {
 
         	return output;
 		
-        }
-    
+        }*/
+
+    public String callPCatURL(String input) {
+   	
+    	String output="{\"products \":[{\"product_id\":\"\",\"product_name\":\"\",\"product_desc\":\"\",\"rate_value\":\"\"},{},{},]}{\"bundles \":[{\"bundle_type_cd \":\"\", \"bundle_level_cd\":\"\",\"bundle_desc\":\"\", \"rate_value\":\"\"},{ }, { }, ]}";
+
+       	return output;
+		
+       }
 }

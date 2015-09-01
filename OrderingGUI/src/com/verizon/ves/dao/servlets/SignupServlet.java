@@ -48,7 +48,7 @@ public class SignupServlet extends HttpServlet {
   		String ename=request.getParameter("ename");
   		String email=request.getParameter("email");
   		String password=request.getParameter("pwd1");
-  		
+  		System.out.println(ename+" "+email+" "+password);
   		int eid=new SignupDAO().signup(ename, password, email);
   		
   		String subject = "New Employee Registeration";
