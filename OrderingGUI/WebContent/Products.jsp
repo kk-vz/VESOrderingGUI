@@ -25,7 +25,7 @@
 		var pstate = '<%= ((CustomerDetails)session.getAttribute("customerdetails")).getConnectionaddress().getState() %>'; 
 		alert(pstate);
 		dataString = "pstate=" + pstate	+ "&pService=" + service;
-		alert(datastring);
+		
 		$.ajax({
 					type : "POST",
 					url : "CallPCatServiceCatalog",

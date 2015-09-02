@@ -328,14 +328,14 @@
 						<fieldset>
 
 							<div id="ajaxResponse">
-								<form action="" class="register" method="post">
+								<form action="NextButtonServlet" class="register" method="post">
 
 									<h3>Provisioning Address</h3>
 									<table>
 										<tr>
 											<td>Street *`</td>
-											<td><input type="text" class="long" name="cstreet"
-												id="cstreet" onblur="validate(this);" /><span id="streetv"></span>
+											<td><input type="text" class="long" name="cstreetname"
+												id="cstreetname" onblur="validate(this);" /><span id="streetv"></span>
 											</td>
 										</tr>
 
@@ -388,7 +388,12 @@
 											</td>
 										</tr>
 									</table>
-
+									<div>
+									<br> <label class="obinfo"> * Mandatory fields</label> 
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<button class="btn btn-success" type="submit" "><strong>Next
+											&raquo;</strong></button>
+									</div>
 
 
 
@@ -396,7 +401,7 @@
 									<br>
 
 								</form>
-								<form action="NewOrderServlet" class="register" method="post">
+								<!--form action="NewOrderServlet" class="register" method="post">
 
 									<h3>Quoting</h3>
 									<table>
@@ -450,10 +455,10 @@
 									<div>
 									<br> <label class="obinfo"> * Mandatory fields</label> 
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<a class="btn btn-success" type="submit" href="Products.jsp"><strong>Next
-											&raquo;</strong></a>
+									<button class="btn btn-success" type="submit" "><strong>Next
+											&raquo;</strong></button>
 									</div>
-								</form>
+								</form-->
 
 
 							</div>

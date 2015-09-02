@@ -26,6 +26,7 @@ public class CallPCatServiceCatalog extends HttpServlet {
 		if ( p2 != null ) str +=  "&" + p2;
 		if ( p3 != null ) str +=  "&" + p3;
 		
+		System.out.println(str);
 
 		String productList = null;
 	    

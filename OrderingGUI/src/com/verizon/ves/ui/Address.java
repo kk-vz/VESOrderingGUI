@@ -2,7 +2,7 @@ package com.verizon.ves.ui;
 public class Address {
 	
 	public String streetname;
-	public int zipcode;
+	public long zipcode;
 	public String city;
 	public String state;
 	public int stateid;
@@ -15,7 +15,7 @@ public class Address {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Address(String streetname, int zipcode, String city,
+	public Address(String streetname, long zipcode, String city,
 			String state, int bstateid, String country) {
 		super();
 		this.streetname = streetname;
@@ -34,11 +34,11 @@ public class Address {
 		this.streetname = streetname;
 	}
 
-	public int getZipcode() {
+	public long getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(long zipcode) {
 		this.zipcode = zipcode;
 	}
 
