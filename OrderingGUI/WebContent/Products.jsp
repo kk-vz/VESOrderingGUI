@@ -1,15 +1,120 @@
 <!DOCTYPE html>
+<%@page import="com.verizon.ves.ui.CustomerDetails"%>
 <html lang="en">
   <head>
   <script type="text/javascript" src="sliderengine/jquery.js"></script><script type="text/javascript" src="sliderengine/jquery.hislider.js"></script>
-   
+  <script>
+  function alert1(temp) {
+		
+		if (temp.id == "prod1") {
+			service = "internetdedicated";
+		} else if (temp.id == "prod2") {
+			service = "pip";
+		} else if (temp.id == "prod3") {
+			service = "internetdedicated&pip";
+		} else if (temp.id == "prod4") {
+			service = "access";
+		} else if (temp.id == "prod5") {
+			service = "pip&access";
+		} else if (temp.id == "prod6") {
+			service = "access&internetdedicated";
+		} else if (temp.id == "prod7") {
+			service = "access&pip&internetdedicated";
+		}
+		// pstate or cstate?
+		var pstate = '<%= ((CustomerDetails)session.getAttribute("customerdetails")).getConnectionaddress().getState() %>'; 
+		alert(pstate);
+		dataString = "pstate=" + pstate	+ "&pService=" + service;
+		alert(datastring);
+		$.ajax({
+					type : "POST",
+					url : "CallPCatServiceCatalog",
+					data : dataString,
+					dataType : "json",
+
+					//if received a response from the server
+					success : function(data, textStatus, jqXHR) {
+
+						$("#PL").html("");
+
+						str1 = JSON.stringify(data);
+						var obj = JSON.parse(str1);
+						
+
+						var radio = "<input type=\"radio\" name=\"product\" id=\"product\" value=\"";
+						var radio_next = "\"/>";
+						var table_head = "<table cellpadding=\"15px\" class=\"product-table\">" +
+										 "<tr>" +
+										 "<td>Select</td>" +
+										 "<td>Product ID</td>" +
+										 "<td>Product Name</td>" +
+										 "<td>Product Description</td>" +
+										 "<td>Cost</td>" +
+										 "</tr>";
+
+						med = "";
+						if (service == "access" || service == "pip"
+								|| service == "internetdedicated") {
+							for (var i = 0; i < obj.Product_Details.length; i++) {
+
+								med = med
+										+ "<tr><td>"
+										+ radio
+										+ obj.Product_Details[i].Product_ID.value
+										+ radio_next
+										+ "</td><td>"
+										+ obj.Product_Details[i].Product_ID.value
+										+ "</td><td>"
+										+ obj.Product_Details[i].Product_Name.value
+										+ "</td><td>"
+										+ obj.Product_Details[i].Product_Description.value
+										+ "</td><td>"
+										+ obj.Product_Details[i].Cost.value;
+
+							}
+							$("#PL").append(table_head + med + "</table>");
+
+						} else {
+							
+							for (var i = 0; i < obj.Bundle_Details.length; i++) {
+
+								med = med + "<tr><td>" + radio
+										+ obj.Bundle_Details[i].Bundle_Id.value
+										+ radio_next + "</td><td>"
+										+ obj.Bundle_Details[i].Bundle_Id.value
+										+ "</td><td>" + " " + "</td><td>"
+										+ obj.Bundle_Details[i].Bundle_Desc.value
+										+ "</td><td>"
+										+ obj.Bundle_Details[i].Bundle_Cost.value;
+							}
+							$("#PL").append(table_head + med + "</table>");
+
+						}
+
+					},
+
+					//If there was no response from the server
+					error : function(jqXHR, textStatus, errorThrown) {
+						console.log("Something really bad happened " + textStatus);
+						$("#PL").html(jqXHR.responseText);
+					}
+
+				});
+
+	}
+
+
+  
+  </script> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
     <meta name="author" content="GeeksLabs">
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
+	
 
+	
     <title>V Enterprise </title>
     <!-- Bootstrap CSS -->    
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -59,11 +164,12 @@
 
   <body>
   
-  <!-- JSP bean code for getting the customer details from the home.jsp page -->
+  
+  	<!-- JSP bean code for getting the customer details from the home.jsp page -->
 
 		<jsp:useBean id="customerdetails" class="com.verizon.ves.ui.CustomerDetails" scope="session"></jsp:useBean>
 			<jsp:setProperty property="fname" name="customerdetails" param="fname"/>
-			<jsp:setProperty property="lname" name="customerdetails" param="lname"/> //Set this to null by default
+			<jsp:setProperty property="lname" name="customerdetails" param="lname"/> 
 			<jsp:setProperty property="email" name="customerdetails" param="email"/>
 			<jsp:setProperty property="contactnumber" name="customerdetails" param="contactnumber"/>
 
@@ -80,16 +186,15 @@
 			<jsp:setProperty property="zipcode" name="billingaddress" param="bzipcode"/>
 
 		<jsp:setProperty property="billingaddress" name="customerdetails" value="${billingaddress}"/>
-		<jsp:setProperty property="connecionaddress" name="customerdetails" value="${connectionaddress}"/>
+		<jsp:setProperty property="connectionaddress" name="customerdetails" value="${connectionaddress}"/>
 		
 
 <!-- Bean code ends here -->
-  
-  
-  
-  
-  <!-- container section start -->
+	
+   <!-- container section start -->
   <section id="container" class="">
+     
+     
      
       
       <header class="header dark-bg">
@@ -329,7 +434,7 @@
     <script type="text/javascript" src="js/app.js"></script>
      <script src="js/jquery-1.9.1.js" type="text/javascript"></script>
     <!--PCAT PRODUCT CATALOG-->
-    <script src="js/PCATurl.js" />
+    <!-- script src="js/PCATurl.js" /-->
     <script src="js/jquery.js"></script>
 	<script src="js/jquery-ui-1.10.4.min.js"></script>
     <script src="js/jquery-1.8.3.min.js"></script>

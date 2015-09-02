@@ -1,5 +1,5 @@
-function alert1(temp) {
-
+function alert1(temp,pstate) {
+	
 	if (temp.id == "prod1") {
 		service = "internetdedicated";
 	} else if (temp.id == "prod2") {
@@ -16,9 +16,11 @@ function alert1(temp) {
 		service = "access&pip&internetdedicated";
 	}
 	// pstate or cstate?
-	dataString = "pstate=" + document.getElementById("cstate").value
-			+ "&pService=" + service;
-
+	// String pstate = connectionaddress.getZipcode(); 
+	alert(pstate);
+	var dataString = "pstate=" + pstate+
+	+ "&pService=" + service;
+	alert(datastring);
 	$.ajax({
 				type : "POST",
 				url : "CallPCatServiceCatalog",

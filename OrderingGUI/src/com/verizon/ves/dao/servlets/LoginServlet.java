@@ -4,6 +4,7 @@ import java.io.IOException;
 
 
 
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.verizon.ves.dao.LoginDAO;
+import com.verizon.ves.ui.CustomerDetails;
 
 
 @WebServlet("/LoginServlet")
@@ -43,7 +45,11 @@ public class LoginServlet extends HttpServlet {
 		int status=new LoginDAO().checkLogin(userName, password);
         
 		if(status == 0)
-		{
+		{	
+			CustomerDetails customerdetails = new CustomerDetails();
+			System.out.println(customerdetails);
+			customerdetails.setCustomertype("new");
+			session.setAttribute("customerdetails", customerdetails);
 			response.sendRedirect("home.jsp");
 		}
 		else if(status == 1)

@@ -33,7 +33,7 @@ function register_form()
 	var email = document.getElementById("email").value;
    	var pwd1 = document.getElementById("pwd1").value;
     var pwd2 = document.getElementById("pwd2").value;
-  //  var regex_email = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+    var regex_email = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
 	
 	
@@ -46,10 +46,10 @@ function register_form()
 			document.getElementById("signup-error").innerHTML = "Name should not contain numbers";
 			return false;
 		}
-/* 		else if (regex_email.test(email)) {
+ 		else if (!regex_email.test(email)) {
 			document.getElementById("signup-error").innerHTML = "Invalid Email Address !!";
 			return false;
-		} */
+		} 
 		else if (pwd1 !== pwd2) {
 			document.getElementById("signup-error").innerHTML = "Passwords Do Not Match!!!";
 			return false;

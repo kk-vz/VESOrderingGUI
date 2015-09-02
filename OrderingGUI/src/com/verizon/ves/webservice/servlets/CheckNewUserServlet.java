@@ -55,7 +55,7 @@ public class CheckNewUserServlet extends HttpServlet {
 			ProfilePull profile = new Gson().fromJson(outputJson, ProfilePull.class); 
 			System.out.println(profile);
 			CustomerDetails customerdetails = profile.getCustomerdetails();
-			//customerdetails.setCustomertype("registered");
+			customerdetails.setCustomertype("registered");
 			System.out.println(customerdetails);
 			System.out.println(customerdetails.getFname());
 			session.setAttribute("customerdetails", customerdetails);

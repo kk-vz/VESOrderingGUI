@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.verizon.ves.ui.CustomerDetails"%>
 <html lang="en">
   <head>
   <script type="text/javascript" src="sliderengine/jquery.js"></script><script type="text/javascript" src="sliderengine/jquery.hislider.js"></script>
@@ -206,85 +207,106 @@
 
 
 									<table>
-										<tr>
-											<td>Company Name *</td>
-											<td><input type="text" id="fname" name="fname"
-												onblur="validate(this);" /></td>
-											<span id="namev"></span>
-										</tr>
+					<tr>
+							<td>
+								Company Name *
+							</td>
+							<td>	
+							<input type="text" id="fname" name="fname" onblur="validate(this);" value='<%= ((CustomerDetails)session.getAttribute("customerdetails")).getFname() %>'/> 
+							
+							</td>	
+							<span id="namev"></span>
+					</tr>
+               
+					<tr>
+							<td>				
+								Street *`
+							</td>
+							<td>
+							<input type="text" class="long" name="bstreetname" id="bstreetname" onblur="validate(this);"  value='<%= ((CustomerDetails)session.getAttribute("customerdetails")).getBillingaddress().getStreetname() %> '/><span id="streetv"></span>
+							</td>
+					</tr>
+					
+					<tr>
+							<td>
+								City *
+							</td>
+							<td>
+							<input type="text" class="long" name="bcity" id="bcity" onblur="validate(this);" value='<%= ((CustomerDetails)session.getAttribute("customerdetails")).getBillingaddress().getCity() %>'/>
+							<span id="streetv"></span>
+							</td>
+					</tr>
+					
+					<tr>
+							<td>
+								State *
+							</td>
+							<td>
+							
+								<select id="bstate" name="bstate" value='<%= ((CustomerDetails)session.getAttribute("customerdetails")).getBillingaddress().getState() %>'>
+										<option value="select">----select your state----</option>
+										<option value="ALASKA">ALASKA</option>
+										<option value="ARIZONA">ARIZONA</option>
+										<option value="CALIFORNIA">CALIFORNIA</option>
+										<option value="COLORADO">COLORADO</option>
+										<option value="FLORIDA">FLORIDA</option>
+										<option value="GEORGIA">GEORGIA</option>
+										<option value="HAWAII">HAWAII</option>
+										<option value="INDIANA">INDIANA</option>
+										<option value="KENTUCKY">KENTUCKY</option>
+										<option value="MICHIGAN">MICHIGAN</option>
+										<option value="MISSISSIPPI">MISSISSIPPI</option>
+										<option value="MISSOURI">MISSOURI</option>
+										<option value="NEW HAMPSHIRE">NEW HAMPSHIRE</option>
+										<option value="NEW JERSY">NEW JERSY</option>
+										<option value="NEW MEXICO">NEW MEXICO</option>
+										<option value="NEW YORK">NEW YORK</option>
+										<option value="OKLAHOMA">OKLAHOMA</option>
+										<option value="OREGON">OREGON</option>
+										<option value="PENNSYLVANIA">PENNSYLVANIA</option>
+										<option value="TENNESSE">TENNESSE</option>
+										<option value="TEXAS">TEXAS</option>
+										<option value="VERMONT">VERMONT</option>
+										<option value="VIRGINIA">VIRGINIA</option>
+										<option value="WASHINGTON">WASHINGTON</option>
+										<option value="WEST VIRGINIA">WEST VIRGINIA</option>
+								</select>
+							<span id="streetv"></span>	
 
-										<tr>
-											<td>Street *`</td>
-											<td><input type="text" class="long" name="bstreetname"
-												id="bstreetname" onblur="validate(this);" /><span
-												id="streetv"></span></td>
-										</tr>
-
-										<tr>
-											<td>City *</td>
-											<td><input type="text" class="long" name="bcity"
-												id="bcity" onblur="validate(this);" /> <span id="streetv"></span>
-											</td>
-										</tr>
-
-										<tr>
-											<td>State *</td>
-											<td><select id="bstate" name="bstate">
-													<option value="select">----select your state----</option>
-													<option value="ALASKA">ALASKA</option>
-													<option value="ARIZONA">ARIZONA</option>
-													<option value="CALIFORNIA">CALIFORNIA</option>
-													<option value="COLORADO">COLORADO</option>
-													<option value="FLORIDA">FLORIDA</option>
-													<option value="GEORGIA">GEORGIA</option>
-													<option value="HAWAII">HAWAII</option>
-													<option value="INDIANA">INDIANA</option>
-													<option value="KENTUCKY">KENTUCKY</option>
-													<option value="MICHIGAN">MICHIGAN</option>
-													<option value="MISSISSIPPI">MISSISSIPPI</option>
-													<option value="MISSOURI">MISSOURI</option>
-													<option value="NEW HAMPSHIRE">NEW HAMPSHIRE</option>
-													<option value="NEW JERSY">NEW JERSY</option>
-													<option value="NEW MEXICO">NEW MEXICO</option>
-													<option value="NEW YORK">NEW YORK</option>
-													<option value="OKLAHOMA">OKLAHOMA</option>
-													<option value="OREGON">OREGON</option>
-													<option value="PENNSYLVANIA">PENNSYLVANIA</option>
-													<option value="TENNESSE">TENNESSE</option>
-													<option value="TEXAS">TEXAS</option>
-													<option value="VERMONT">VERMONT</option>
-													<option value="VIRGINIA">VIRGINIA</option>
-													<option value="WASHINGTON">WASHINGTON</option>
-													<option value="WEST VIRGINIA">WEST VIRGINIA</option>
-											</select> <span id="streetv"></span></td>
-										</tr>
-
-										<tr>
-											<td>Zipcode *</td>
-											<td><input type="text" class="long" name="bzipcode"
-												id="bzipcode" onblur="validate(this);" /><span id="streetv"></span>
-											</td>
-										</tr>
-
-
-
-
-										<tr>
-											<td>Email Address *</td>
-											<td><input type="text" class="long" name="email"
-												id="email" onblur="validate(this);" /><span id="countryv"></span>
-											</td>
-										</tr>
-
-										<tr>
-											<td>Contact *</td>
-											<td><input type="text" class="long" name="contactnumber"
-												id="contactnumber" onblur="validate(this);" /><span
-												id="zipv"></span></td>
-
-										</tr>
-									</table>
-									<br>
+							</td>
+					</tr>
+				
+					<tr>
+							<td>
+								Zipcode *
+							</td>
+							<td>
+								<input type="text" class="long" name="bzipcode" id="bzipcode" onblur="validate(this);" value='<%= ((CustomerDetails)session.getAttribute("customerdetails")).getBillingaddress().getZipcode() %>'/><span id="streetv"></span>
+							</td>
+					</tr>
+				
+                
+                
+                
+					<tr>
+							<td>
+								Email Address *
+							</td>
+							<td>
+								<input type="text" class="long" name="email" id="email" onblur="validate(this);" value='<%= ((CustomerDetails)session.getAttribute("customerdetails")).getEmail() %>' /><span id="countryv"></span>
+							</td>
+					</tr>
+               
+					<tr>
+							<td>
+								Contact *
+							</td>
+							<td>
+								<input type="text" class="long" name="contactnumber" id="contactnumber" onblur="validate(this);" value='<%= ((CustomerDetails)session.getAttribute("customerdetails")).getContactnumber() %>'/><span id="zipv"></span>
+							</td>
+                    
+                    </tr>
+                </table>									<br>
 
 									<!-- <label class="obinfo"> * Mandatory fields</label>-->
 								</form>
